@@ -1,6 +1,7 @@
 "use client"; // Esto indica que el componente es un Client Component
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Image from 'next/image';
 
 // Interfaz para definir el tipo de dato del formulario
 interface ExerciseForm {
@@ -35,7 +36,7 @@ export default function Home() {
   // Ejercicios con sus GIFs correspondientes
   const exerciseData: { [key: string]: Exercise[] } = {
     cardio: [
-      { name: "Jumping Jacks ", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWE5YjFpbjkxMm9yMTVkczdnb2ZldGNqdGo1M3JlYnEybW41ejFmeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/icP8phcZOQ7kM99i0T/giphy.gif" },
+      { name: "Jumping Jacks", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWE5YjFpbjkxMm9yMTVkczdnb2ZldGNqdGo1M3JlYnEybW41ejFmeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/icP8phcZOQ7kM99i0T/giphy.gif" },
       { name: "High Knees", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGMzeThwZ2E4YXN1ZDFsOHFxYmdiZWs2NXY5cnNmdnlnbmcwanM3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlNOsSRC0Bts7iU/giphy.gif" },
       { name: "Burpees", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTB4eHcxcWdoeDFxem1qNTgxOHJ4cjVxc3RhZ3d1czJ1NmF3OGc4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MWpR0DEX7ZcgHqsHec/giphy.gif" },
     ],
@@ -100,6 +101,7 @@ export default function Home() {
 
       {routine.length === 0 ? (
         <form onSubmit={handleSubmit} className="bg-gray-300 p-6 rounded-lg shadow-md w-96 text-black">
+          {/* Form fields */}
           <label className="block mb-2 text-lg">Tipo de ejercicio:</label>
           <select
             name="type"
@@ -117,7 +119,7 @@ export default function Home() {
             name="level"
             value={formData.level}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
+            className="w-full p-2 border border-gray-300 rounded-md mb-4 text-black"
           >
             <option value="principiante">Principiante</option>
             <option value="intermedio">Intermedio</option>
@@ -130,8 +132,7 @@ export default function Home() {
             name="duration"
             value={formData.duration}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
-            placeholder="30"
+            className="w-full p-2 border border-gray-300 rounded-md mb-4 text-black"
             min="10"
             max="60"
           />
@@ -142,8 +143,7 @@ export default function Home() {
             name="repetitions"
             value={formData.repetitions}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
-            placeholder="10"
+            className="w-full p-2 border border-gray-300 rounded-md mb-4 text-black"
             min="1"
           />
 
@@ -153,8 +153,7 @@ export default function Home() {
             name="sets"
             value={formData.sets}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
-            placeholder="3"
+            className="w-full p-2 border border-gray-300 rounded-md mb-4 text-black"
             min="1"
           />
 
@@ -163,7 +162,7 @@ export default function Home() {
             name="goal"
             value={formData.goal}
             onChange={handleInputChange}
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
+            className="w-full p-2 border border-gray-300 rounded-md mb-4 text-black"
           >
             <option value="general">General</option>
             <option value="weightLoss">Pérdida de Peso</option>
@@ -172,27 +171,35 @@ export default function Home() {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white w-full p-2 rounded-md hover:bg-blue-600"
+            className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300"
           >
             Generar Rutina
           </button>
         </form>
       ) : (
-        <ul className="bg-white p-6 rounded-lg shadow-md w-96 text-black">
-          <h2 className="text-2xl font-bold mb-4">Tu Rutina</h2>
-          {routine.map((exercise, index) => (
-            <li key={index} className="mb-4">
-              <p className="text-lg">{exercise.name}</p>
-              <img src={exercise.gifUrl} alt={exercise.name} className="w-full h-auto rounded-md" />
-            </li>
-          ))}
+        <div className="w-full">
+          <h2 className="text-3xl mb-4">Rutina Generada</h2>
+          <ul>
+            {routine.map((exercise, index) => (
+              <li key={index} className="mb-4">
+                <p className="text-xl">{exercise.name}</p>
+                <Image
+                  src={exercise.gifUrl}
+                  alt={exercise.name}
+                  width={300}
+                  height={300}
+                  className="rounded-lg"
+                />
+              </li>
+            ))}
+          </ul>
           <button
             onClick={() => setRoutine([])}
-            className="bg-red-500 text-white w-full p-2 rounded-md hover:bg-red-600 mt-4"
+            className="mt-4 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300"
           >
-            Generar Nueva Rutina
+            Regresar
           </button>
-        </ul>
+        </div>
       )}
     </div>
   );
