@@ -36,19 +36,19 @@ export default function Home() {
   // Ejercicios con sus GIFs correspondientes
   const exerciseData: { [key: string]: Exercise[] } = {
     cardio: [
-      { name: "Jumping Jacks", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWE5YjFpbjkxMm9yMTVkczdnb2ZldGNqdGo1M3JlYnEybW41ejFmeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/icP8phcZOQ7kM99i0T/giphy.gif" },
-      { name: "High Knees", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGMzeThwZ2E4YXN1ZDFsOHFxYmdiZWs2NXY5cnNmdnlnbmcwanM3aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlNOsSRC0Bts7iU/giphy.gif" },
-      { name: "Burpees", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTB4eHcxcWdoeDFxem1qNTgxOHJ4cjVxc3RhZ3d1czJ1NmF3OGc4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MWpR0DEX7ZcgHqsHec/giphy.gif" },
+      { name: "Jumping Jacks", gifUrl: "/gifs/jumping jacks.gif" },
+      { name: "High Knees", gifUrl: "/gifs/high knees.gif" },
+      { name: "Burpees", gifUrl: "/gifs/burpees.gif" },
     ],
     strength: [
-      { name: "Push-ups", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHBycjN0OGd0YTgxcDlpejgzb3A2emEzNHFkOGlnemtwZHhneXdybSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mGWBjz74fn404BWUl4/giphy.gif" },
-      { name: "Squats", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGh4bnBjdjNnYXZ3azIwOWEzMTNodzF6bGI4Y2x4MnlidGFqeTJrbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3NwOzakbqzOrsfMKBC/giphy.gif" },
-      { name: "Planks", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTd4NnE5cWt5MTdwN3RpZDhjdHhwaG54MHo2ODR2YWp1YWtqd3BscyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcteOOkovIh9HaVFjT/giphy-downsized-large.gif" },
+      { name: "Push-ups", gifUrl: "/gifs/push ups.gif" },
+      { name: "Squats", gifUrl: "/gifs/squats.gif" },
+      { name: "Planks", gifUrl: "/gifs/planks.gif" },
     ],
     flexibility: [
-      { name: "Toe Touch", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTM5ejQ4ZmJuNXBnZWtncWh5MzZ5dzNrNGl4ZTY3aG4zNDFyNnM4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xWYomAYxOIPL5JfhNT/giphy.gif" },
-      { name: "Cat-Cow Stretch", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGRqZnFpYjF3MGppbjg0azNzZHcxd2UyaWhhbDY5NnJwdm9rbW02NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JdtyfG3ZSE8iOlDs64/giphy.gif" },
-      { name: "Child's Pose", gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW1wMHUxa2h3YjRsdHNuc3d5MDd0aWx1ZGhqdXd4Z3ZhYjFhcDhwMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/A7eqrnTXE35xKaMDS3/giphy.gif" },
+      { name: "Toe Touch", gifUrl: "/gifs/toe touch.gif" },
+      { name: "Cat-Cow Stretch", gifUrl: "/gifs/cat cow stretch.gif" },
+      { name: "Child's Pose", gifUrl: "/gifs/child's pose.gif" },
     ],
   };
 
@@ -102,7 +102,7 @@ export default function Home() {
       {routine.length === 0 ? (
         <form onSubmit={handleSubmit} className="bg-gray-300 p-6 rounded-lg shadow-md w-96 text-black">
           {/* Form fields */}
-          <label className="block mb-2 text-lg">Tipo de ejercicio:</label>
+          <label className="block mb-2 text-lg">Tipo de Ejercicio:</label>
           <select
             name="type"
             value={formData.type}
@@ -177,7 +177,7 @@ export default function Home() {
           </button>
         </form>
       ) : (
-        <div className="w-full">
+        <div className="w-full max-w-xl mx-auto p-4">
           <h2 className="text-3xl mb-4">Rutina Generada</h2>
           <ul>
             {routine.map((exercise, index) => (
